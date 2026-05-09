@@ -7,7 +7,7 @@ const noticeSchema = new mongoose.Schema({
   hostel: { type: mongoose.Schema.Types.ObjectId, ref: "Hostel" }, // removed required: true
   category: { 
     type: String, 
-    enum: ["Academic", "Maintenance", "Events"],
+    enum: ["Academic", "Maintenance", "Events", "Other"],
     default: "Events" 
   },
   isPinned: { type: Boolean, default: false },

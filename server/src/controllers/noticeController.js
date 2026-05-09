@@ -1,7 +1,7 @@
 import Notice from "../models/Notice.js";
 import { processAndSaveFile } from "../utils/localUpload.js";
 import { sendNotification } from "../utils/sendNotification.js"; 
-import User from "../models/user.js";
+import User from "../models/User.js";
 
 export const createNotice = async (req, res) => {
     try {

@@ -108,68 +108,94 @@ export default function StaffManagement() {
         </div>
 
         <div className="space-y-20">
+
           {/* ENROLLMENT FORM SECTION */}
-          <section className="max-w-2xl">
-            <div className="space-y-6">
-              <h2 className="text-sm font-black text-indigo-600 uppercase tracking-[0.2em] ml-2">Enroll New Staff</h2>
-              <div className="bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm">
-                <div className="space-y-6">
-                  <div>
-                    <label className="text-[10px] font-black uppercase text-slate-400 ml-2">Full Name</label>
-                    <div className="relative mt-1">
-                      <UserCircle size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
-                      <input
-                        className="w-full bg-slate-50 border-none rounded-2xl py-4 pl-11 pr-4 text-sm focus:ring-2 focus:ring-indigo-500"
-                        placeholder="e.g. John Doe"
-                        value={form.name}
-                        onChange={(e) => setForm({ ...form, name: e.target.value })}
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="text-[10px] font-black uppercase text-slate-400 ml-2">Email Identity</label>
-                    <div className="relative mt-1">
-                      <Mail size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
-                      <input
-                        className="w-full bg-slate-50 border-none rounded-2xl py-4 pl-11 pr-4 text-sm focus:ring-2 focus:ring-indigo-500"
-                        placeholder="warden@iitrpr.ac.in"
-                        value={form.email}
-                        onChange={(e) => setForm({ ...form, email: e.target.value })}
-                      />
-                    </div>
-                  </div>
-
-                <div>
-                  <label className="text-[10px] font-black uppercase text-slate-400 ml-2">Primary Assignment</label>
-                  <div className="relative mt-1">
-                    <Building size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
-                    <select
-                      className="w-full bg-slate-50 border-none rounded-2xl py-4 pl-11 pr-4 text-sm focus:ring-2 focus:ring-indigo-500 cursor-pointer"
-                      value={form.hostelId}
-                      onChange={(e) => setForm({ ...form, hostelId: e.target.value })}
-                    >
-                      {hostels.map((h) => (
-                        <option key={h._id} value={h._id}>
-                          {h.name} {h.type ? `(${h.type})` : ''}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-
-                <button
-                  onClick={handleSubmit}
-                  disabled={loading}
-                  className="w-full flex items-center justify-center gap-2 bg-indigo-600 text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest shadow-xl shadow-indigo-100 hover:bg-indigo-700 hover:-translate-y-1 transition-all disabled:opacity-50"
-                >
-                  <Plus size={16} />
-                  {loading ? "Syncing..." : "Create and Send Credentials"}
-                </button>
-              </div>
-            </div>
+<section className="max-w-2xl">
+  <div className="space-y-6">
+    <h2 className="text-sm font-black text-indigo-600 uppercase tracking-[0.2em] ml-2">
+      Enroll New Staff
+    </h2>
+    <div className="bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm">
+      <div className="space-y-6">
+        
+        {/* FULL NAME */}
+        <div>
+          <label className="text-[10px] font-black uppercase text-slate-400 ml-2">Full Name</label>
+          <div className="relative mt-1">
+            <UserCircle size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+            <input
+              className="w-full bg-slate-50 border-none rounded-2xl py-4 pl-11 pr-4 text-sm focus:ring-2 focus:ring-indigo-500"
+              placeholder="e.g. John Doe"
+              value={form.name}
+              onChange={(e) => setForm({ ...form, name: e.target.value })}
+            />
           </div>
-        </section>
+        </div>
+
+        {/* DESIGNATED ROLE */}
+        <div>
+          <label className="text-[10px] font-black uppercase text-slate-400 ml-2">Designated Role</label>
+          <div className="relative mt-1">
+            <ShieldCheck size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+            <select
+              className="w-full bg-slate-50 border-none rounded-2xl py-4 pl-11 pr-4 text-sm focus:ring-2 focus:ring-indigo-500 cursor-pointer appearance-none"
+              value={form.role}
+              onChange={(e) => setForm({ ...form, role: e.target.value })}
+            >
+              <option value="warden">Warden</option>
+              <option value="caretaker">Caretaker</option>
+            </select>
+          </div>
+        </div>
+
+        {/* EMAIL IDENTITY */}
+        <div>
+          <label className="text-[10px] font-black uppercase text-slate-400 ml-2">Email Identity</label>
+          <div className="relative mt-1">
+            <Mail size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+            <input
+              className="w-full bg-slate-50 border-none rounded-2xl py-4 pl-11 pr-4 text-sm focus:ring-2 focus:ring-indigo-500"
+              placeholder="warden@iitrpr.ac.in"
+              value={form.email}
+              onChange={(e) => setForm({ ...form, email: e.target.value })}
+            />
+          </div>
+        </div>
+
+        {/* PRIMARY ASSIGNMENT */}
+        <div>
+          <label className="text-[10px] font-black uppercase text-slate-400 ml-2">Primary Assignment</label>
+          <div className="relative mt-1">
+            <Building size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+            <select
+              className="w-full bg-slate-50 border-none rounded-2xl py-4 pl-11 pr-4 text-sm focus:ring-2 focus:ring-indigo-500 cursor-pointer appearance-none"
+              value={form.hostelId}
+              onChange={(e) => setForm({ ...form, hostelId: e.target.value })}
+            >
+              <option value="" disabled>Select a Hostel</option>
+              {hostels.map((h) => (
+                <option key={h._id} value={h._id}>
+                  {h.name} {h.type ? `(${h.type})` : ''}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        {/* SUBMIT BUTTON */}
+        <button
+          onClick={handleSubmit}
+          disabled={loading}
+          className="w-full flex items-center justify-center gap-2 bg-indigo-600 text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest shadow-xl shadow-indigo-100 hover:bg-indigo-700 hover:-translate-y-1 transition-all disabled:opacity-50"
+        >
+          <Plus size={16} />
+          {loading ? "Syncing..." : "Create and Send Credentials"}
+        </button>
+
+      </div>
+    </div>
+  </div>
+</section>
 
           {/* STAFF DIRECTORY SECTION */}
           <section className="space-y-8">

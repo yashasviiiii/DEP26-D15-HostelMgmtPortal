@@ -20,24 +20,26 @@ const transporter = nodemailer.createTransport({
 // --- Hostels ---
 export const addHostel = async (req, res) => {
   try {
-
+    console.log("POST /api/admin/hostels - Request Body:", req.body);
     const { name, type, roomConfigs } = req.body;
 
-    const totalRooms = roomConfigs.reduce(
-      (sum, r) => sum + Number(r.rooms), 
-      0
-    );
+    if (!name || !roomConfigs || roomConfigs.length === 0) {
+      return res.status(400).json({ error: "Hostel name and room configurations are required." });
+    }
 
     const hostel = await Hostel.create({
       name,
       type,
-      roomConfigs,
-      totalRooms
+      roomConfigs
     });
 
     res.json(hostel);
 
   } catch (err) {
+    console.error("Add Hostel Error:", err);
+    if (err.code === 11000) {
+      return res.status(400).json({ error: "A hostel with this name and type already exists." });
+    }
     res.status(500).json({ error: err.message });
   }
 };

@@ -30,8 +30,8 @@ export const processAndSaveFile = async (file, folderName) => {
   const filePath = path.join(uploadDir, imgName);
 
   await sharp(file.buffer)
-    .resize(500, 500, { fit: 'inside', withoutEnlargement: true })
-    .webp({ quality: 80 })
+    .resize(1200, 1200, { fit: 'inside', withoutEnlargement: true })
+    .webp({ quality: 90, effort:6})
     .toFile(filePath);
 
   return `/uploads/${folderName}/${imgName}`;

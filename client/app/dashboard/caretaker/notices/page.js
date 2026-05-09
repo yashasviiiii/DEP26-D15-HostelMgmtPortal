@@ -9,7 +9,7 @@ import {
   Pin, RotateCcw, Filter, ChevronDown, CalendarRange, Trash2
 } from "lucide-react";
 
-const CATEGORIES = ["All", "Maintenance", "Events", "Other"];
+const CATEGORIES = ["Academic", "Maintenance", "Events", "Other"];
 
 export default function NoticeDashboard() {
   const [notices, setNotices] = useState([]);

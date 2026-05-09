@@ -1,6 +1,6 @@
 import express from "express";
 const router = express.Router();
-import { createComplaint, getMyComplaints, getCaretakerComplaints, toggleUpvote, bulkUpdateComplaints, submitStudentSlots, scheduleVisit, resolveOrReset, quickResolve, getStudentHistory, requestReschedule, deleteComplaint, sendReminder } from "../controllers/complaintController.js";
+import { createComplaint, getMyComplaints, getCaretakerComplaints, toggleUpvote, bulkUpdateComplaints, submitStudentSlots, scheduleVisit, resolveOrReset, quickResolve, getStudentHistory, requestReschedule, deleteComplaint, sendReminder, rejectComplaint } from "../controllers/complaintController.js";
 import { protect, caretakerOnly, allowRoles } from "../middleware/auth.js"; // Your JWT protector
 import Complaint from "../models/Complaint.js";
 
@@ -20,6 +20,7 @@ router.patch("/:id/upvote", protect, toggleUpvote);
 router.patch("/:id/submit-slots", protect, submitStudentSlots);
 router.patch("/:id/schedule-visit", protect, caretakerOnly, scheduleVisit);
 router.patch("/:id/resolve-reset", protect, caretakerOnly, resolveOrReset);
+router.patch("/:id/reject", protect, caretakerOnly, rejectComplaint);
 router.patch("/:id/quick-resolve", protect, quickResolve);
 router.patch("/:id/reschedule",protect, requestReschedule)
 router.patch("/:id/manage", protect, async (req, res) => {

@@ -112,39 +112,7 @@ export default function StudentForms() {
 
     if (res.ok) {
       // Construct email draft details
-      const emailTo = data.wardenEmail || "warden@college.edu";
-      const subject = encodeURIComponent(`Guest House Booking Request - ${guestForm.guestName}`);
-      const bodyText = `Dear Warden,
-
-I would like to request a guest house booking with the following details:
-
-Guest Name: ${guestForm.guestName}
-Purpose: ${guestForm.purpose}
-Arrival: ${guestForm.arrivalDate ? new Date(guestForm.arrivalDate).toLocaleDateString() : ''} ${guestForm.arrivalTime}
-Departure: ${guestForm.departureDate ? new Date(guestForm.departureDate).toLocaleDateString() : ''} ${guestForm.departureTime}
-Number of Guests: ${guestForm.numGuests}
-Number of Rooms: ${guestForm.numRooms}
-
-Applicant Details:
-Name: ${guestForm.applicantName}
-Department: ${guestForm.applicantDepartment}
-Entry No: ${guestForm.applicantEntryNo}
-Mobile: ${guestForm.applicantMobileNo}
-
-Please let me know the further process.
-
-Sincerely,
-${guestForm.applicantName}`;
-
-      const body = encodeURIComponent(bodyText);
-      const baseGmailUrl = `https://mail.google.com/mail/?view=cm&to=${encodeURIComponent(emailTo)}&su=${subject}&body=${body}`;
-
-      setGuestForm(initialGuestForm);
-      setShowGuestModal(false);
-      fetchMyForms();
-
-      // Show email picker dialog
-      setDraftDialog({ baseGmailUrl, senderEmail: user?.email || "", pdfUrl: data.pdfUrl || null });
+      alert(data.message || "Mail Sent to Warden");
     } else {
       console.log(data);
       alert(data.message || "Failed to submit guesthouse request");
